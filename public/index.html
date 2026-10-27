@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UNIM Network</title>
+<link rel="icon" href="logo.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section id="auth" class="hidden">
+  <div class="half blue"></div><div class="half red"></div>
+  <div class="auth-box">
+    <img src="logo.png" alt="Blason UNIM-RDC" class="crest">
+    <h1>UNIM Network</h1>
+    <p class="tag">Le réseau des étudiants et enseignants de l'UNIM</p>
+    <div class="tabs">
+      <button id="tab-login" class="on" type="button">Connexion</button>
+      <button id="tab-register" type="button">Créer un compte</button>
+    </div>
+    <p id="auth-msg" class="msg" role="alert"></p>
+    <form id="login-form">
+      <label>Email<input name="email" type="email" required autocomplete="email"></label>
+      <label>Mot de passe<input name="password" type="password" required autocomplete="current-password"></label>
+      <button class="primary">Se connecter</button>
+    </form>
+    <form id="register-form" class="hidden">
+      <label>Nom complet<input name="nom" required maxlength="80"></label>
+      <label>Email<input name="email" type="email" required></label>
+      <div class="row">
+        <label>Matricule<input name="matricule" maxlength="40"></label>
+        <label>Faculté<input name="faculte" maxlength="80" placeholder="Ex. Droit"></label>
+      </div>
+      <label>Mot de passe (8 caractères minimum)<input name="password" type="password" minlength="8" required autocomplete="new-password"></label>
+      <button class="primary">Envoyer ma demande</button>
+      <p class="hint">Votre compte sera activé après validation par un administrateur.</p>
+    </form>
+  </div>
+</section>
+
+<div id="app" class="hidden">
+  <header>
+    <div class="brand"><img src="logo.png" alt=""><strong>UNIM Network</strong></div>
+    <nav>
+      <button id="nav-feed" class="on" type="button">Fil d'actualité</button>
+      <button id="nav-messages" type="button">Messages <span id="msg-badge" class="badge hidden"></span></button>
+      <button id="nav-admin" class="hidden" type="button">Validation des comptes <span id="badge" class="badge hidden"></span></button>
+      <button id="nav-out" type="button">Déconnexion</button>
+    </nav>
+    <label class="me" title="Changer ma photo de profil">
+      <span id="me-av"></span><span id="me-name"></span>
+      <input id="avatar-in" type="file" accept="image/*" hidden>
+    </label>
+  </header>
+
+  <main id="feed">
+    <form id="compose">
+      <textarea name="content" rows="3" maxlength="1000" placeholder="Partagez une idée, une annonce, une question…" required></textarea>
+      <div class="bar">
+        <select name="groupe" aria-label="Publier dans"></select>
+        <label class="file">Ajouter une photo<input id="img-in" type="file" accept="image/*" hidden></label>
+        <span id="img-name" class="hint"></span>
+        <button class="primary">Publier</button>
+      </div>
+    </form>
+    <select id="groupe" aria-label="Filtrer par groupe"></select>
+    <div id="posts"></div>
+  </main>
+
+  <main id="messages" class="hidden wide">
+    <div class="msgs">
+      <aside>
+        <select id="new-chat" aria-label="Nouvelle conversation"></select>
+        <div id="convs"></div>
+      </aside>
+      <section id="chat">
+        <p id="chat-empty" class="empty">Choisissez une conversation ou démarrez-en une nouvelle.</p>
+        <div id="chat-box" class="hidden">
+          <div id="chat-head" class="chat-head"></div>
+          <div id="thread"></div>
+          <form id="msg-form">
+            <input name="content" maxlength="1000" placeholder="Votre message…" autocomplete="off" required>
+            <button class="primary">Envoyer</button>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <main id="admin" class="hidden">
+    <h2>Demandes d'inscription</h2>
+    <select id="filter">
+      <option value="pending">En attente</option>
+      <option value="approved">Validés</option>
+      <option value="rejected">Refusés</option>
+    </select>
+    <div id="users"></div>
+  </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
